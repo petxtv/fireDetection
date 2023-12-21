@@ -23,15 +23,11 @@ let hardwareRef = db.collection("hardware");
 
 //send data
 app.get("/api/update", (req, res) => {
-    const data = { value: req.query.value };
+    const data = { value: Number(req.query.value) };
     console.log(data);
     if (!isNaN(data.value)) {
-        try {
-            hardwareRef.doc("reading").set(data);
-            res.send("value is a number " + data.value);
-        } catch (err) {
-            res.send("error " + err);
-        }
+        hardwareRef.doc("reading").set(data);
+        res.send("value is a number " + data.value);
     } else {
         res.send("value is not a number " + data.value);
     }
