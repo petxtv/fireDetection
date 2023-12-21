@@ -26,8 +26,12 @@ app.get("/api/update", (req, res) => {
     const data = { value: req.query.value };
     console.log(data);
     if (!isNaN(data.value)) {
-        hardwareRef.doc("reading").set(data);
-        res.send("value is a number " + data.value);
+        try {
+            hardwareRef.doc("reading").set(data);
+            res.send("value is a number " + data.value);
+        } catch (error) {
+            res.send("error ");
+        }
     } else {
         res.send("value is not a number " + data.value);
     }
