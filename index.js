@@ -29,8 +29,8 @@ app.get("/api/update", (req, res) => {
         try {
             hardwareRef.doc("reading").set(data);
             res.send("value is a number " + data.value);
-        } catch (error) {
-            res.send("error ");
+        } catch (err) {
+            res.send("error " + err.message);
         }
     } else {
         res.send("value is not a number " + data.value);
