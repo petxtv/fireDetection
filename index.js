@@ -22,13 +22,17 @@ const db = admin.firestore();
 let hardwareRef = db.collection("hardware");
 
 //send data
-app.post("/api/update", (req, res) => {
-    const data = { value: req.body.value };
+app.get("/api/update", (req, res) => {
+    const data = { value: req.query.value };
     console.log(data);
-    hardwareRef.doc("reading").set(data);
+    if (!isNaN(data.value)) {
+        hardwareRef.doc("reading").set(data);
+        res.send("value is a number " + data.value);
+    } else {
+        res.send("value is not a number " + data.value);
+    }
     // Your code to save the new user to the database or any other source
     // Send a response indicating success or failure
-    res.json({ message: "Value updated successfully" });
 });
 
 module.exports = app;
