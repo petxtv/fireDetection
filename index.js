@@ -25,6 +25,7 @@ let hardwareRef = db.collection("hardware");
 app.post("/api/update", (req, res) => {
     const data = { value: req.body.value };
     console.log(data);
+    console.log(req.body);
     hardwareRef.doc("reading").set(data);
     // Your code to save the new user to the database or any other source
     // Send a response indicating success or failure
