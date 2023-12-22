@@ -29,7 +29,7 @@ app.post("/api/update", async function (req, res) {
     await hardwareRef.doc("reading").set(data);
     // Your code to save the new user to the database or any other source
     // Send a response indicating success or failure
-    res.json({ message: "Value updated successfully" });
+    res.status(200).json({ message: "Value updated successfully" });
 });
 
 app.get("/", (req, res) => {
