@@ -22,11 +22,11 @@ const db = admin.firestore();
 let hardwareRef = db.collection("hardware");
 
 //send data
-app.post("/api/update", (req, res) => {
+app.post("/api/update", async function (req, res) {
     const data = { value: req.body.value };
     console.log(data);
     console.log(req.body);
-    hardwareRef.doc("reading").set(data);
+    await hardwareRef.doc("reading").set(data);
     // Your code to save the new user to the database or any other source
     // Send a response indicating success or failure
     res.json({ message: "Value updated successfully" });
