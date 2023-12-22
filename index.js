@@ -31,4 +31,8 @@ app.post("/api/update", (req, res) => {
     res.json({ message: "Value updated successfully" });
 });
 
+app.get("/", (req, res) => {
+    res.json({ message: "hi" });
+});
+
 module.exports = app;
