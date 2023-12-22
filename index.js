@@ -23,12 +23,13 @@ let hardwareRef = db.collection("hardware");
 
 //send data
 app.post("/api/update", async function (req, res) {
+    console.log(req.body);
+
     const data = {
         temp: req.body.temp,
         isThereFire: Boolean(req.body.isThereFire),
     };
     console.log(data);
-    console.log(req.body);
     try {
         await hardwareRef.doc("reading").set(data);
         res.status(200).json({ message: "Values updated successfully" });
