@@ -23,13 +23,21 @@ let hardwareRef = db.collection("hardware");
 
 //send data
 app.post("/api/update", async function (req, res) {
-    const data = { value: req.body.value };
+    const data = {
+        temp: req.body.temp,
+        isThereFire: Boolean(req.body.isThereFire),
+    };
     console.log(data);
     console.log(req.body);
-    await hardwareRef.doc("reading").set(data);
+    try {
+        await hardwareRef.doc("reading").set(data);
+        res.status(200).json({ message: "Values updated successfully" });
+    } catch (error) {
+        console.log("error" + error);
+        res.status(400).json({ message: "error" });
+    }
     // Your code to save the new user to the database or any other source
     // Send a response indicating success or failure
-    res.status(200).json({ message: "Value updated successfully" });
 });
 
 app.get("/", (req, res) => {
