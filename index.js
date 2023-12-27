@@ -44,5 +44,4 @@ app.post("/api/update", async function (req, res) {
 app.get("/", (req, res) => {
     res.json({ message: "hi" });
 });
-
 module.exports = app;
